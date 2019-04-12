@@ -1,0 +1,42 @@
+{% extends 'layouts/fixed.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/index.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/pages/index.js') }}"></script>
+{% end %}
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4>
+                <i class="icon-arrow-left52 position-left"></i>
+                <span class="text-semibold">{{ _('Services') }}</span> - {{ _('Registry') }}
+                <span class="badge bg-warning-400">{{ len(service_cards) }}</span>
+                <small class="display-block">{{ _('Online services registry') }}</small>
+            </h4>
+        </div>
+        <div class="heading-elements">
+            <form class="heading-form" action="#" method="get">
+                <div class="form-group">
+                    <div class="has-feedback">
+                        <input type="search" name="search" class="form-control" placeholder="Search">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-small text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row services-cards">
+    {% for entry in service_cards %}{% module ServiceCard(entry) %}{% end %}
+</div>
+{% end %}

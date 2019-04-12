@@ -1,0 +1,35 @@
+{% extends 'layouts/fixed.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/login.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/loaders/pace.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/loaders/blockui.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/styling/uniform.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/utils/window.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/login.js') }}"></script>
+{% end %}
+
+{% block body-class %}login-container{% end %}
+{% block page-id %}data-page-id=login{% end %}
+
+{% block main-navbar %}
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/"><img src="{{ static_url('images/logo_light.png') }}" alt=""></a>
+    </div>
+</div>
+{% end %}
+
+{% block main-sidebar %}{% end %}
+
+{% block content %}
+{% module Template('modules/login-form.html', form=form) %}
+{% end %}
+
+{% block footer %}
+{% module Template('modules/footer.html', centered=True, metadata=metadata, now=now) %}
+{% end %}

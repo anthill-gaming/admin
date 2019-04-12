@@ -1,0 +1,1214 @@
+{% extends '../base.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/services/common.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url('css/pages/services/event.css') }}" rel="stylesheet" type="text/css">
+<style>
+    .input-group-transparent .form-control {
+        width: -webkit-fill-available;
+    }
+</style>
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/styling/switchery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/notifications/jgrowl.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/ui/moment/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/pickers/daterangepicker.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/services/event.js') }}"></script>
+{% end %}
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content"></div>
+    <div class="breadcrumb-line breadcrumb-line-component">
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a href="{{ reverse_url('index') }}"><i class="icon-home2 position-left"></i> {{ _('Home') }}</a></li>
+            <li class="active">{{ metadata['title'] }}</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            {#            <li><a href="#"><i class="icon-plus22 position-left"></i> {{ _('Create event') }}</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear position-left"></i> {{ _('Options') }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="#">
+                            <i class="icon-split"></i> {{ _('Categories') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-tree7"></i> {{ _('Generators') }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{{ reverse_url('services:event:log') }}">
+                            <i class="icon-clipboard6"></i> {{ _('Log') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-events">
+                <thead>
+                <tr>
+                    <th>{{ _('Name') }}</th>
+                    <th>{{ _('Category') }}</th>
+                    <th>{{ _('Generator') }}</th>
+                    <th>{{ _('Created') }}</th>
+                    <th>{{ _('Dates') }}</th>
+                    <th>{{ _('Active') }}</th>
+                    <th>{{ _('Enabled') }}</th>
+                    <th>{{ _('Actions') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">victorious-battles</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">stealing-totems</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">points-capture</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">ally-assistance</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">enemies-elimination</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">temporary-cooperation</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">shoulder-to-shoulder</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">the-destroyer</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">minefields</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">machine-gun-turn</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">compensation-of-time</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">effective-fighter</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">cannon-fodder</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">combat-support</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">need-for-speed</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">technological-spying</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">city-brawling</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">the-destroyer</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">city-brawling</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">effective-fighter</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">need-for-speed</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">tactic-domination</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">points-capture</a></td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">rocket-firing</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">caves-exploring</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td>&ndash;</td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">imminent-shot</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">daily-event-progress</a></td>
+                    <td><a href="#" data-popup="tooltip" title="Description" data-placement="top">victorious-battles</a></td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control" value="08/01/2013 1:00" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00 - 08/01/2013 1:30">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-users"></i> {{ _('Participants') }}</a></li>
+                                    <li class="divider"></li>
+                                    <li class="remove-event-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

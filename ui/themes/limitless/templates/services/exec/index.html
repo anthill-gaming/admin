@@ -1,0 +1,420 @@
+{% extends '../base.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/services/common.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url('css/pages/services/exec.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/styling/switchery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/buttons/spin.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/buttons/ladda.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/services/exec.js') }}"></script>
+{% end %}
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content"></div>
+    <div class="breadcrumb-line breadcrumb-line-component">
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a href="{{ reverse_url('index') }}"><i class="icon-home2 position-left"></i> {{ _('Home') }}</a></li>
+            <li class="active">{{ metadata['title'] }}</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            {#            <li><a href="#"><i class="icon-plus22 position-left"></i> {{ _('Create commit') }}</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear position-left"></i> {{ _('Options') }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="{{ reverse_url('services:exec:log') }}">
+                            <i class="icon-clipboard6"></i> {{ _('Log') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-commits">
+                <thead>
+                <tr>
+                    <th>{{ _('Hash') }}</th>
+                    <th>{{ _('Author') }}</th>
+                    <th>{{ _('Email') }}</th>
+                    <th>{{ _('Date') }}</th>
+                    <th>{{ _('Message') }}</th>
+                    <th>{{ _('Enabled') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>a90ee64a9aa59103e180e5371e3afcbf3c4d7aad</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="mailto:james@interface.club">james@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>8e179ad207b7d1ffa7d10b45c9ba7ac58d1f1d1d</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">jeremy@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>a90ee64a9aa59103e180e5371e3afcbf3c4d7aad</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">margo@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>da66020295b6d0e8b7a37051d0166bf391f94a66</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">monica@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>eb2b19d57ddc0002651303596136de85f542c6f0</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">jemmy@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>eb2b19d57ddc0002651303596136de85f542c6f0</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">ashlynn@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>3c376b29ddb07aaf6311d62f46bcbc941d5519a3</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">ray@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>658fed8585c1eca2e10cbc4e4c58daf78162876d</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">brian@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>eb2b19d57ddc0002651303596136de85f542c6f0</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">patrick@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>9b1faafe3074a62480c075c644b1e36659a87858</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">roland@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>269561f2e76b4ee9fc5746d0ad43da0b850907c5</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">deanna@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>1fa592a74d074b8ebfdb6028059e15c20dfc78de</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">dawn@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>1fa592a74d074b8ebfdb6028059e15c20dfc78de</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">blondie@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>1fa592a74d074b8ebfdb6028059e15c20dfc78de</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">derryl@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>498057593abf013e1c98019a8273aafa1e75113c</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">vincent@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>8d709073920e5f3b9190990acb12441a000fc7c4</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">diantha@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>8d709073920e5f3b9190990acb12441a000fc7c4</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">lilian@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>b02ca049bcc382cb76ad8d73ea77b35ebdc9ee2e</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">toria@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>fcd480304494790c82dd86317aeb9412c7f8b989</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">tiffany@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>5f2e63979b22fa5d465cd1bc93de158eb5bbc2f0</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">trenton@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>269561f2e76b4ee9fc5746d0ad43da0b850907c5</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">brandon@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>91e421e5ad4de24a05fb98ebde644afc08da8d93</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">troy@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>8c30eb57bc76dd8a9afcdd82a68f29d4e7e4bd94</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">elbert@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>a3e5cde2b936e27bf4e87f795fb91b960f35250d</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">coen@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>8e179ad207b7d1ffa7d10b45c9ba7ac58d1f1d1d</td>
+                    <td>Lysenko Vladimir</td>
+                    <td><a href="#">charles@interface.club</a></td>
+                    <td>08/01/2013 1:07:53</td>
+                    <td>Moar modification methods replaced</td>
+                    <td>
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

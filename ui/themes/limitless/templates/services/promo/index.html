@@ -1,0 +1,1155 @@
+{% extends '../base.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/services/common.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url('css/pages/services/promo.css') }}" rel="stylesheet" type="text/css">
+<style>
+    .input-group-transparent .form-control {
+        width: -webkit-fill-available;
+    }
+</style>
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/styling/switchery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/notifications/jgrowl.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/ui/moment/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/pickers/daterangepicker.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/inputs/touchspin.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/services/promo.js') }}"></script>
+{% end %}
+
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content"></div>
+    <div class="breadcrumb-line breadcrumb-line-component">
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a href="{{ reverse_url('index') }}"><i class="icon-home2 position-left"></i> {{ _('Home') }}</a></li>
+            <li class="active">{{ metadata['title'] }}</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            {#            <li><a href="#"><i class="icon-plus22 position-left"></i> {{ _('Create promocode') }}</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear position-left"></i> {{ _('Options') }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="{{ reverse_url('services:promo:log') }}">
+                            <i class="icon-clipboard6"></i> {{ _('Log') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-promo-codes">
+                <thead>
+                <tr>
+                    <th>{{ _('Key') }}</th>
+                    <th>{{ _('Used') }}</th>
+                    <th>{{ _('Total') }}</th>
+                    <th>{{ _('Expires') }}</th>
+                    <th>{{ _('Enabled') }}</th>
+                    <th>{{ _('Available') }}</th>
+                    <th>{{ _('Actions') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set detail_url=reverse_url('services:promo:promo_code_detail', 'test') %}
+                <tr>
+                    <td data-sort="25">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1000</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic" style="max-width: 150px;">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-warning position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="1">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1000</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="2">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1500</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="3">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1200</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="4">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>56</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="5">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>956</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="6">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>452</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-warning position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="7">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1432</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="8">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>748</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="9">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>21</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="10">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>300</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="11">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>562</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="12">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>1482</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="13">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>41</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="14">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>775</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="15">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>456</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="16">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>31</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="17">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>8</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="18">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>152</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="19">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>633</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="20">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>124</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="21">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>438</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="22">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>493</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="23">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>196</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td data-sort="24">
+                        <a href="{{ detail_url }}">VT6S-545B-419K</a>
+                    </td>
+                    <td>491</td>
+                    <td data-sort="1500">
+                        <div class="input-group" style="max-width: 150px;">
+                            <input type="text" value="1500" class="touchspin-basic">
+                        </div>
+                    </td>
+                    <td data-sort="1552651260">
+                        <div class="input-group input-group-transparent">
+                            <span class="input-group-addon"><i class="icon-calendar22 text-success position-left"></i></span>
+                            <input type="text" class="form-control daterange-predefined" value="08/01/2013 1:00">
+                        </div>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked" disabled>
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-promo-code-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

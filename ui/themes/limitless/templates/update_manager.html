@@ -1,0 +1,73 @@
+{% extends 'layouts/fixed.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/update_manager.css') }}" rel="stylesheet" type="text/css">
+<style>
+    .btn-float {
+        padding: 11px;
+        border-radius: 3px;
+    }
+    .sweet-alert p {
+        text-align: justify;
+        position: relative;
+    }
+</style>
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/natural_sort.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/buttons/spin.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/buttons/ladda.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/update_manager.js') }}"></script>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-updates">
+                <thead>
+                <tr>
+                    <th>{{ _('Item') }}</th>
+                    <th>{{ _('Actions') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for service in services_list %}
+                {% set color=service['color'] %}
+                <tr>
+                    <td>
+                        <div class="media">
+                            <div class="media-left">
+                                <span class="btn border-{{ color }} text-{{ color }} btn-flat btn-icon btn-rounded btn-sm">
+                                    <i class="{{ service['icon_class'] }}"></i></span>
+                            </div>
+
+                            <div class="media-body media-middle">
+                                <span class="text-semibold">{{ service['title'] }}</span>
+                                <div class="text-muted text-size-small">
+                                    Last updated: 2016.12.30
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn bg-blue btn-float btn-loading update-action" data-loading-text="<i class='icon-spinner11 spinner'></i>"><i class="icon-spinner11"></i></button>
+                            <button type="button" class="btn bg-blue btn-float view-update-info"><i class="icon-info22"></i></button>
+                        </div>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                {% end %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

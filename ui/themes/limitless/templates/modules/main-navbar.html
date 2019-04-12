@@ -1,0 +1,203 @@
+<div class="navbar navbar-default navbar-fixed-top header-highlight">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/"><img src="{{ static_url('images/logo_light.png') }}" alt=""></a>
+
+        <ul class="nav navbar-nav pull-right visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a>
+            </li>
+            {% if metadata['debug'] %}
+            <li><p class="navbar-text"><span class="label bg-success">{{ _('debug') }}</span></p></li>
+            {% end %}
+            <li id="navbar-uptime">
+                <p class="navbar-text">
+                    <span class="heading-text"></span>
+                </p>
+            </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+{#            <li class="dropdown">#}
+{#                <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                    <i class="icon-steam"></i>#}
+{#                    <span class="visible-xs-inline-block position-right">{{ _('Games') }}</span>#}
+{#                </a>#}
+{##}
+{#                <div class="dropdown-menu dropdown-content" style="min-width: 0;">#}
+{#                    <ul class="media-list dropdown-content-body">#}
+{#                        <li class="media">#}
+{#                            <div>#}
+{#                                <img src="{{ static_url('images/placeholder.jpg') }}" class="img-circle img-sm" alt="">#}
+{#                            </div>#}
+{#                        </li>#}
+{##}
+{#                        <li class="media">#}
+{#                            <div class="no-padding">#}
+{#                                <a href="#"#}
+{#                                   class="btn border-success text-success btn-flat btn-icon btn-rounded btn-sm">#}
+{#                                    <i class="icon-calendar"></i>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </li>#}
+{##}
+{#                        <li class="media">#}
+{#                            <div class="no-padding">#}
+{#                                <img src="{{ static_url('images/placeholder.jpg') }}"#}
+{#                                     class="img-circle img-sm" alt="">#}
+{#                            </div>#}
+{#                        </li>#}
+{##}
+{#                        <li class="media">#}
+{#                            <div class="no-padding">#}
+{#                                <a href="#"#}
+{#                                   class="btn border-purple text-purple btn-flat btn-icon btn-rounded btn-sm">#}
+{#                                    <i class="icon-steam"></i>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </li>#}
+{##}
+{#                        <li class="media">#}
+{#                            <div class="no-padding">#}
+{#                                <img src="{{ static_url('images/placeholder.jpg') }}"#}
+{#                                     class="img-circle img-sm" alt="">#}
+{#                            </div>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-bubbles4"></i>
+                    <span class="visible-xs-inline-block position-right">{{ _('Last messages') }}</span>
+                    <span class="badge bg-warning-400">56</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-content width-350">
+                    <div class="dropdown-content-heading">
+                        {{ _('Last messages') }}
+                        <ul class="icons-list">
+                            <li><a href="#"><i class="icon-compose"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <ul class="media-list dropdown-content-body">
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="{{ static_url('images/placeholder.jpg') }}" class="img-circle img-sm" alt="">
+                                <span class="badge bg-danger-400 media-badge">5</span>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">James Alexander <i class="icon-crown superuser"></i></span>
+                                    <span class="media-annotation pull-right">04:58</span>
+                                </a>
+
+                                <span class="text-muted">who knows, maybe that would be...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#"
+                                   class="btn border-success text-success btn-flat btn-icon btn-rounded btn-sm"><i
+                                        class="icon-calendar"></i></a>
+                                <span class="badge bg-danger-400 media-badge">4</span>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Event</span>
+                                    <span class="media-annotation pull-right">12:16</span>
+                                </a>
+
+                                <span class="text-muted">That was something he was una...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{{ static_url('images/placeholder.jpg') }}"
+                                                         class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Jeremy Victorino</span>
+                                    <span class="media-annotation pull-right">22:48</span>
+                                </a>
+
+                                <span class="text-muted">But that would be extremely...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#"
+                                   class="btn border-purple text-purple btn-flat btn-icon btn-rounded btn-sm"><i
+                                        class="icon-steam"></i></a>
+                            </div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Game</span>
+                                    <span class="media-annotation pull-right">Tue</span>
+                                </a>
+
+                                <span class="text-muted">What a strenuous career it...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{{ static_url('images/placeholder.jpg') }}"
+                                                         class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Richard Vango</span>
+                                    <span class="media-annotation pull-right">Mon</span>
+                                </a>
+
+                                <span class="text-muted">Other travelling salesmen...</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="dropdown-content-footer">
+                        <a href="{{ reverse_url('services:message:index') }}" data-popup="tooltip" title=""
+                           data-original-title="{{ _('All messages') }}"><i class="icon-menu display-block"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ static_url('images/placeholder.jpg') }}" alt=""> <span>Vladimir</span> <i
+                        class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="{% if page == 'profile' %}active{% end %}">
+                        <a href="{{ reverse_url('profile') }}"><i class="icon-user"></i> {{ _('Profile') }}</a>
+                    </li>
+                    <li class="{% if page == 'settings' %}active{% end %}">
+                        <a href="{{ reverse_url('settings') }}"><i class="icon-cog5"></i> {{ _('Settings') }}</a>
+                    </li>
+                    <li class="{% if page == 'audit_log' %}active{% end %}">
+                        <a href="{{ reverse_url('audit-log') }}"><i class="icon-history"></i> {{ _('History') }}</a>
+                    </li>
+                    <li class="{% if page == 'update_manager' %}active{% end %}">
+                        <a href="{{ reverse_url('update-manager') }}">
+                            <span class="badge bg-warning-400 pull-right">17</span>
+                            <i class="icon-spinner11"></i> {{ _('Updates') }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{{ reverse_url('logout') }}"><i class="icon-switch2"></i> {{ _('Logout') }}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

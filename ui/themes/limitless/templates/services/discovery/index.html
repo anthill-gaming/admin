@@ -1,0 +1,128 @@
+{% extends '../base.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/services/common.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url('css/pages/services/discovery.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/services/discovery.js') }}"></script>
+{% end %}
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content"></div>
+    <div class="breadcrumb-line breadcrumb-line-component">
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a href="{{ reverse_url('index') }}"><i class="icon-home2 position-left"></i> {{ _('Home') }}</a></li>
+            <li class="active">{{ metadata['title'] }}</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            {#            <li><a href="#"><i class="icon-plus22 position-left"></i> {{ _('Create service') }}</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear position-left"></i> {{ _('Options') }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="{{ reverse_url('services:discovery:log') }}">
+                            <i class="icon-clipboard6"></i> {{ _('Log') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-services">
+                <thead>
+                <tr>
+                    <th>{{ _('Service') }}</th>
+                    <th>Registered</th>
+                    <th>Email</th>
+                    <th>Payment method</th>
+                    <th>Orders history</th>
+                    <th>Value</th>
+                    <th>{{ _('Actions') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for service in services_list %}
+                {% set detail_url=reverse_url('services:discovery:service', service['name']) %}
+                {% set color=service['color'] %}
+                <tr>
+                    <td>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="{{ detail_url }}" class="btn border-{{ color }} text-{{ color }} btn-flat btn-icon btn-rounded btn-sm">
+                                    <i class="{{ service['icon_class'] }}"></i></a>
+                            </div>
+
+                            <div class="media-body media-middle">
+                                <a href="{{ detail_url }}" class="text-semibold">{{ service['title'] }}</a>
+                                <div class="text-muted text-size-small">
+                                    Latest order: 2016.12.30
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>July 12, 2016</td>
+                    <td><a href="#">james@interface.club</a></td>
+                    <td>MasterCard</td>
+                    <td>
+                        <ul class="list list-unstyled no-margin">
+                            <li class="no-margin">
+                                <i class="icon-infinite text-size-base text-warning position-left"></i>
+                                Pending:
+                                <a href="#">25 orders</a>
+                            </li>
+
+                            <li class="no-margin">
+                                <i class="icon-checkmark3 text-size-base text-success position-left"></i>
+                                Processed:
+                                <a href="#">34 orders</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <h6 class="no-margin text-semibold">&euro; 322.00</h6>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-service-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                {% end %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

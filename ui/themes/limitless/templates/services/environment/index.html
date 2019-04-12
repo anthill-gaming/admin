@@ -1,0 +1,221 @@
+{% extends '../base.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/services/common.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url('css/pages/services/environment.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/styling/switchery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/services/environment.js') }}"></script>
+{% end %}
+
+{% block header %}
+<div class="page-header">
+    <div class="page-header-content"></div>
+    <div class="breadcrumb-line breadcrumb-line-component">
+        <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a href="{{ reverse_url('index') }}"><i class="icon-home2 position-left"></i> {{ _('Home') }}</a></li>
+            <li class="active">{{ metadata['title'] }}</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            {#            <li><a href="#"><i class="icon-plus22 position-left"></i> {{ _('Create environment') }}</a></li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear position-left"></i> {{ _('Options') }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="{{ reverse_url('services:environment:applications') }}">
+                            <i class="icon-puzzle"></i> {{ _('Applications') }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{{ reverse_url('services:environment:log') }}">
+                            <i class="icon-clipboard6"></i> {{ _('Log') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% end %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <table class="table table-striped text-nowrap table-environments">
+                <thead>
+                <tr>
+                    <th>{{ _('Name') }}</th>
+                    <th>{{ _('Description') }}</th>
+                    <th>{{ _('Discovery') }}</th>
+                    <th>{{ _('Active') }}</th>
+                    <th>{{ _('Actions') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="media-left media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'local') }}"
+                               class="btn bg-primary-400 btn-rounded btn-icon btn-xs">
+                                <span class="letter-icon">L</span>
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'local') }}"
+                               class="display-inline-block letter-icon-title">local</a>
+                        </div>
+                    </td>
+                    <td>Local environment</td>
+                    <td><a href="http://localhost:9602" target="_blank">http://localhost:9602</a></td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-environment-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="media-left media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'beta') }}"
+                               class="btn bg-indigo-400 btn-rounded btn-icon btn-xs">
+                                <span class="letter-icon">B</span>
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'beta') }}"
+                               class="display-inline-block letter-icon-title">beta</a>
+                        </div>
+                    </td>
+                    <td>Beta environment</td>
+                    <td><a href="https://discovery-beta.example.com" target="_blank">https://discovery-beta.example.com</a></td>
+                    <td data-sort="0">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-environment-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="media-left media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'live') }}"
+                               class="btn bg-danger-400 btn-rounded btn-icon btn-xs">
+                                <span class="letter-icon">L</span>
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'live') }}"
+                               class="display-inline-block letter-icon-title">live</a>
+                        </div>
+                    </td>
+                    <td>Live environment</td>
+                    <td><a href="https://discovery-live.example.com" target="_blank">https://discovery-live.example.com</a></td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-environment-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="media-left media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'dev') }}"
+                               class="btn bg-success-400 btn-rounded btn-icon btn-xs">
+                                <span class="letter-icon">D</span>
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="{{ reverse_url('services:environment:detail', 'dev') }}"
+                               class="display-inline-block letter-icon-title">dev</a>
+                        </div>
+                    </td>
+                    <td>Development environment</td>
+                    <td><a href="https://discovery-dev.example.com" target="_blank">https://discovery-dev.example.com</a></td>
+                    <td data-sort="1">
+                        <label class="checkbox-inline switchery-sm">
+                            <input type="checkbox" class="switch" checked="checked">
+                        </label>
+                    </td>
+                    <td class="text-right">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu7"></i>
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="remove-environment-action"><a href="#"><i class="icon-bin"></i> {{ _('Remove') }}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="no-padding-left"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end %}

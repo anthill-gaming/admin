@@ -1,0 +1,1263 @@
+{% extends 'layouts/fixed.html' %}
+
+{% block css %}
+<link href="{{ static_url('css/pages/audit_log.css') }}" rel="stylesheet" type="text/css">
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/core/libraries/jquery_ui/widgets.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/tables/datatables/datatables.min.js') }}"></script>
+<script type="text/javascript"
+        src="{{ static_url('js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
+<script type="text/javascript"
+        src="{{ static_url('js/plugins/tables/datatables/extensions/natural_sort.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/plugins/forms/selects/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/pages/audit_log.js') }}"></script>
+{% end %}
+
+{% block content %}
+<!-- Task manager table -->
+<div class="panel panel-white">
+    <table class="table table-striped text-nowrap table-audit-log-records">
+        <thead>
+        <tr>
+            <th>{{ _("Author") }}</th>
+            <th>{{ _("Date & Time") }}</th>
+            <th>{{ _("Service") }}</th>
+            <th>{{ _("Model") }}</th>
+            <th>{{ _("Object ID") }}</th>
+            <th>Value</th>
+            <th>{{ _("Actions") }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">James Alexander</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.12.30
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-steam position-left"></i></span>
+                    <input type="text" class="form-control" value="Game" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">15</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Jeremy Victorino</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.03.05
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-steam position-left"></i></span>
+                    <input type="text" class="form-control" value="Game" disabled>
+                </div>
+            </td>
+            <td>CashOnDelivery</td>
+            <td><a href="#">546</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Margo Baker</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.03.27
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-steam position-left"></i></span>
+                    <input type="text" class="form-control" value="Game" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">134</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Monica Smith</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.10.03
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-gear position-left"></i></span>
+                    <input type="text" class="form-control" value="Configuration" disabled>
+                </div>
+            </td>
+            <td>CashOnDelivery</td>
+            <td><a href="#">7856</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Jemmy Royle</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.11.25
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-gear position-left"></i></span>
+                    <input type="text" class="form-control" value="Configuration" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">45</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Ashlynn Ben</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.04.14
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-gear position-left"></i></span>
+                    <input type="text" class="form-control" value="Configuration" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">42</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Ray Sammy</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.02.20
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-gear position-left"></i></span>
+                    <input type="text" class="form-control" value="Configuration" disabled>
+                </div>
+            </td>
+            <td>Visa</td>
+            <td><a href="#">698</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Brian Leslie</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.12.24
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-gear position-left"></i></span>
+                    <input type="text" class="form-control" value="Configuration" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">85</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Patrick Marilynn</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.09.28
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>WireTransfer</td>
+            <td><a href="#">35</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Roland Cydney</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.02.12
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">468</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Deanna Joss</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.05.20
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>Visa</td>
+            <td><a href="#">4568</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Dawn Justin</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.06.17
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>WireTransfer</td>
+            <td><a href="#">654</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Blondie Madison</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.01.26
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">159</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Derryl Carrie</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.09.15
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar position-left"></i></span>
+                    <input type="text" class="form-control" value="Event" disabled>
+                </div>
+            </td>
+            <td>Visa</td>
+            <td><a href="#">147</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Vincent Doris</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.02.23
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">741</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Diantha Royston</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.02.04
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">62</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Lilian Knox</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.05.18
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>Visa</td>
+            <td><a href="#">5</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Toria Eveline</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.03.28
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">984</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Tiffany Willemina</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.07.29
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">12648</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Trenton Alison</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.09.16
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>WireTransfer</td>
+            <td><a href="#">7</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Brandon Gilbert <i class="icon-crown superuser"></i></a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.11.25
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-circle-code position-left"></i></span>
+                    <input type="text" class="form-control" value="Exec" disabled>
+                </div>
+            </td>
+            <td>Paypal</td>
+            <td><a href="#">11</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Troy Webster</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.10.24
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-cart position-left"></i></span>
+                    <input type="text" class="form-control" value="Store" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">56</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Elbert Cailyn</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.08.20
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-cart position-left"></i></span>
+                    <input type="text" class="form-control" value="Store" disabled>
+                </div>
+            </td>
+            <td>Visa</td>
+            <td><a href="#">954</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Coen Grant</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.12.24
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-cart position-left"></i></span>
+                    <input type="text" class="form-control" value="Store" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">748</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="media">
+                    <a href="user_pages_profile_tabbed.html" class="media-left">
+                        <img src="{{ static_url('images/placeholder.jpg') }}" width="40" height="40" class="img-circle img-md" alt="">
+                    </a>
+
+                    <div class="media-body media-middle">
+                        <a href="user_pages_profile_tabbed.html" class="text-semibold">Charles Elian</a>
+                        <div class="text-muted text-size-small">
+                            Last login: 2016.01.28
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-calendar22 position-left"></i></span>
+                    <input type="text" class="form-control" value="08/01/2013 1:00:35" disabled>
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-transparent">
+                    <span class="input-group-addon"><i class="icon-cart position-left"></i></span>
+                    <input type="text" class="form-control" value="Store" disabled>
+                </div>
+            </td>
+            <td>MasterCard</td>
+            <td><a href="#">9654</a></td>
+            <td>
+
+            </td>
+            <td class="text-right">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="recover-object-action"><a href="#"><i class="icon-history"></i> {{ _("Recover") }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td class="no-padding-left"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- /task manager table -->
+{% end %}
