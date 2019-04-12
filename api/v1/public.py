@@ -11,7 +11,8 @@ class ServiceMetadata(graphene.ObjectType):
     description = graphene.String()
     icon_class = graphene.String()
     color = graphene.String()
-    version = graphene.String()
+    version = graphene.String()  # current version
+    # latest_version = graphene.String()
     debug = graphene.Boolean()
     public_api_url = graphene.String()
     log_url = graphene.String()
