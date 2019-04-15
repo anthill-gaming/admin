@@ -9,7 +9,7 @@ $(function () {
         hearbeat: 5000,
         sendCloseMessage: false,
         ws: {
-            uri: ws_url('/utils-session/'),
+            uri: ws_url(window.utils_session_url),
             useSockJS: false,
             onconnected: function () {
             },
@@ -120,7 +120,8 @@ $(function () {
             },
             function (isConfirm) {
                 if (isConfirm) {
-                    var args = {service_name: service_name, version: null};
+                    var version = $card.data('latest-version');
+                    var args = {service_name: service_name, version: version};
                     utils_client.send('update', args, function (error, response) {
                         if (error || response.error) {
                             var e = error || response.error;
