@@ -12,11 +12,12 @@ class ServiceMetadata(graphene.ObjectType):
     icon_class = graphene.String()
     color = graphene.String()
     version = graphene.String()  # current version
-    # latest_version = graphene.String()
+    latest_version = graphene.String()
     debug = graphene.Boolean()
     public_api_url = graphene.String()
     log_url = graphene.String()
     uptime = graphene.Int()
+    has_updates = graphene.Boolean()
 
     def __lt__(self, other):
         return self.name < other.name

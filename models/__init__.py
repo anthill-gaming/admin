@@ -64,11 +64,15 @@ class UpdateLog(InternalAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     started = db.Column(db.DateTime, default=timezone.now)
     finished = db.Column(db.DateTime)
-    item_name = db.Column(db.String(128), nullable=False)
+    service_name = db.Column(db.String(128), nullable=False)
     author_id = db.Column(db.Integer, nullable=False)
-    current_version = db.Column(db.Integer, nullable=False)
-    previous_version = db.Column(db.Integer, nullable=False)
+    to_version = db.Column(db.Integer, nullable=False)
+    from_version = db.Column(db.Integer, nullable=False)
     last_failure_tb = db.Column(db.Text)
 
     async def get_author(self):
         return await self.internal_request('login', 'get_user', user_id=self.author_id)
+
+    async def restore(self):
+        # TODO: restore previous version
+        pass

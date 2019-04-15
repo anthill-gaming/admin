@@ -2,6 +2,8 @@ from anthill.framework.handlers import RequestHandler
 from anthill.framework.http.errors import HttpBadRequestError
 from anthill.framework.utils.decorators import authenticated
 from anthill.framework.utils.translation import translate as _
+from anthill.framework.utils import timezone
+from anthill.framework.utils.asynchronous import thread_pool_exec as future_exec
 from anthill.platform.handlers.jsonrpc import JsonRPCSessionHandler, jsonrpc_method
 from anthill.platform.auth.handlers import (
     LoginHandler as BaseLoginHandler,
@@ -12,6 +14,7 @@ from anthill.platform.handlers.base import InternalRequestHandlerMixin
 from anthill.platform.api.internal import connector, InternalAPIError
 from ._base import ServiceContextMixin, UserTemplateServiceRequestHandler, PageHandlerMixin
 from admin.ui.modules import ServiceCard
+from admin.models import UpdateLog
 from typing import Optional
 import logging
 import inspect
@@ -97,27 +100,41 @@ class DebugSessionHandler(UserHandlerMixin, PageHandlerMixin, JsonRPCSessionHand
         self._set_context(name, None)
 
 
-def _util_internal_wrapper(func):
-    @functools.wraps(func)
-    async def wrapper(*args, **kwargs):
-        try:
-            await func(*args, **kwargs)
-            return {'message': args[0].SUCCESSFUL_MESSAGE}
-        except InternalAPIError as e:
-            return e.args[0]
-    return wrapper
+def _util_internal_wrapper(on_error=None):
+    def decorator(func):
+        @functools.wraps(func)
+        async def wrapper(*args, **kwargs):
+            try:
+                await func(*args, **kwargs)
+                return {'message': args[0].SUCCESSFUL_MESSAGE}
+            except InternalAPIError as e:
+                if callable(on_error):
+                    await on_error(e)
+                return e.args[0]
+        return wrapper
+    return decorator
 
 
 class UtilsSessionHandler(UserHandlerMixin, JsonRPCSessionHandler):
     SUCCESSFUL_MESSAGE = _('Completed successfully.')
 
     @jsonrpc_method()
-    @_util_internal_wrapper
+    @_util_internal_wrapper()
     async def update(self, service_name, version=None):
         await connector.internal_request(service_name, 'update', version=version)
+        log_kwargs = {
+            'finished': timezone.now(),
+            'service_name': service_name,
+            'author_id': self.current_user.id,
+            'to_version': version,
+            'from_version': self.application.version,
+            'last_failure_tb': None
+        }
+        # TODO: create UpdateLog entry
+        # await future_exec(UpdateLog.create, **log_kwargs)
 
     @jsonrpc_method()
-    @_util_internal_wrapper
+    @_util_internal_wrapper()
     async def reload(self, service_name):
         await connector.internal_request(service_name, 'reload')
 

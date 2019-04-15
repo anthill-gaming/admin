@@ -61,6 +61,7 @@ $(function () {
               iconClass,            \
               color,                \
               version,              \
+              latestVersion,        \
               debug,                \
               publicApiUrl,         \
               uptime,               \
@@ -101,9 +102,10 @@ $(function () {
     }
 
     // Update service
-    $(document).on('click', '.services-cards__entry .update_service a, .sidebar-main .update_service a', function (e) {
+    $(document).on('click', '.services-cards__entry .update_service_action', function (e) {
         e.preventDefault();
-        var service_name = $(this).closest('.services-cards__entry').data('name') || window.service_name;
+        var $card = $(this).closest('.services-cards__entry');
+        var service_name = $card.data('name') || window.service_name;
         swal({
                 title: "Are you sure?",
                 text: "Service " + service_name.toUpperCase() + " will be updated!",
@@ -113,14 +115,14 @@ $(function () {
                 confirmButtonText: "Update",
                 cancelButtonText: "Cancel",
                 closeOnConfirm: false,
-                closeOnCancel: true
+                closeOnCancel: true,
+                showLoaderOnConfirm: true
             },
             function (isConfirm) {
                 if (isConfirm) {
                     var args = {service_name: service_name, version: null};
-                    // TODO: start updating animation
                     utils_client.send('update', args, function (error, response) {
-                        if (error || response.error) { // ¯\_(ツ)_/¯
+                        if (error || response.error) {
                             var e = error || response.error;
                             swal({
                                 title: "Error",
@@ -131,12 +133,14 @@ $(function () {
                         } else {
                             swal({
                                 title: "Updated",
-                                text: response.message,
+                                text: 'Restart service required!',
                                 confirmButtonColor: "#66BB6A",
-                                type: "success"
+                                type: "success",
+                                html: true
                             });
                         }
-                        // TODO: stop updating animation
+                    }, function () {
+
                     });
                 }
             });
