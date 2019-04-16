@@ -68,6 +68,8 @@ $(function () {
                 '        <div class="panel-heading">' +
                 '            <div class="panel-title">' +
                 ((entry.debug) ? '<span class="label bg-success" style="font-weight: 400;font-size: 9px;line-height: normal;">debug</span>' : '') +
+                '<span class="label" id="services-cards__entry__' + entry.name + '_uptime"' +
+                      'style="font-weight: 400;font-size: 10px;line-height: normal;color: gray;"></span>' +
                 '            </div>' +
                 '            <div class="heading-elements">' +
                 '                <ul class="icons-list text-muted">' +

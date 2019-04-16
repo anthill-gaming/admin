@@ -50,6 +50,11 @@ gulp.task('browserify', function () {
                 next(null, file);
             });
     });
+    /*
+    var browserified = transform(function(filename) {
+        return browserify(filename)
+            .bundle();
+    });*/
     return gulp.src([
         ui_theme_dir + 'static/js/plugins/extensions/reconnecting-websocket.js',
         ui_theme_dir + 'static/js/plugins/extensions/kurento-jsonrpc.js'
@@ -121,6 +126,7 @@ gulp.task('default', [                                // list of default tasks
     'lint',                                           // lint
     'less_full',                                      // full version less compile
     //'concatenate',                                  // uncomment if in use
+    'browserify',
     'minify_core',                                    // compress app.js
     'watch'                                           // watch for changes
 ]);
