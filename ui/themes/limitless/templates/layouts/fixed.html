@@ -44,7 +44,10 @@
 
             // Only show the progress on regular and ajax-y page navigation,
             // not every request
-            restartOnRequestAfter: false
+            restartOnRequestAfter: false,
+            ajax: {
+                trackWebSockets: false
+            }
         }
     </script>
     <script type="text/javascript" src="{{ static_url('js/plugins/loaders/pace.min.js') }}"></script>
