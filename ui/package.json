@@ -19,7 +19,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.2",
     "jshint": "^2.10.2",
-    "kurento-jsonrpc": "^5.1.4",
+    "kurento-jsonrpc": "^6.10.0",
     "reconnecting-websocket": "^4.1.10",
     "typescript": "^3.4.3",
     "vinyl-buffer": "^1.0.1",
