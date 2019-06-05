@@ -1,2 +1,3 @@
-Provide interface for administration purposes
+Admin
 =============================================
+Provide interface for administration purposes
