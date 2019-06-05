@@ -24,7 +24,7 @@ BROKER = 'amqp://guest:guest@localhost:5672'
 # APPLICATION_CLASS = 'admin.apps.AnthillApplication'
 APPLICATION_NAME = 'admin'
 APPLICATION_VERBOSE_NAME = _('Admin')
-APPLICATION_DESCRIPTION = _('Service description')
+APPLICATION_DESCRIPTION = _('Provide interface for administration purposes')
 APPLICATION_ICON_CLASS = 'icon-crown'
 APPLICATION_COLOR = 'pink'
 
