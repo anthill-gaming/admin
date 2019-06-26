@@ -35,7 +35,7 @@ class AuditLog(InternalAPIMixin, db.Model):
             'object_id': self.object_id,
             'version': version
         }
-        return self.internal_request(service_name, 'object_version', **kwargs)
+        return self.internal_request(self.service_name, 'object_version', **kwargs)
 
     async def get_current_object(self):
         return await self._get_version_object(version=self.current_version)
@@ -49,7 +49,7 @@ class AuditLog(InternalAPIMixin, db.Model):
             'object_id': self.object_id,
             'version': self.previous_version
         }
-        await self.internal_request(service_name, 'object_recover', **kwargs)
+        await self.internal_request(self.service_name, 'object_recover', **kwargs)
 
 
 class UpdateLog(InternalAPIMixin, db.Model):
