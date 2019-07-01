@@ -1,7 +1,6 @@
 Admin
 =============================================
-Provide interface for administration purposes.
+Provide interface for administration purposes
 
-Status
+Currently under heavy development
 =============================================
-Under heavy development.
