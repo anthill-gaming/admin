@@ -32,6 +32,7 @@ extra_routes = (
     'admin.routes.report',
     'admin.routes.social',
     'admin.routes.store',
+    'admin.routes.vote',
 )
 extra_routes = map(import_module, extra_routes)
 extra_route_patterns = map(lambda mod: getattr(mod, 'route_patterns', []), extra_routes)
