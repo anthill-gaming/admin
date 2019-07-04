@@ -12,6 +12,7 @@ from .game_master import *
 from .leaderboard import *
 from .log import *
 from .login import *
+from .market import *
 from .media import *
 from .message import *
 from .moderation import *
@@ -20,3 +21,4 @@ from .promo import *
 from .report import *
 from .social import *
 from .store import *
+from .vote import *
