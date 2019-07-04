@@ -1,8 +1,8 @@
-anthill_admin
+Admin
 =============================================
 Provide interface for administration purposes.
 Currently under heavy development.
 
 License
 ---------------------------------------------
-``anthill_admin`` is offered under the MIT license.
+Offered under the MIT license.
