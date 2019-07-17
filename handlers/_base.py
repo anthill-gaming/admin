@@ -1,9 +1,9 @@
 from anthill.platform.api.internal import RequestTimeoutError, ServiceDoesNotExist
-from anthill.platform.handlers.base import InternalRequestHandlerMixin
-from anthill.platform.auth.handlers import UserTemplateHandler
+from anthill.platform.handlers.base import InternalRequestHandlerMixin, UserHandlerMixin
 from anthill.framework.http.errors import HttpNotFoundError
 from anthill.framework.core.exceptions import ImproperlyConfigured
 from anthill.framework.handlers.edit import FormMixin, ProcessFormMixin
+from anthill.framework.handlers import TemplateHandler
 import os
 
 
@@ -46,22 +46,6 @@ class ServiceContextMixin(InternalRequestHandlerMixin):
         return context
 
 
-class UserTemplateServiceRequestHandler(ServiceContextMixin, UserTemplateHandler):
-    template_name = None
-
-    def get_template_root(self):
-        return os.path.join('services', self.get_service_name())
-
-    def get_template_name(self):
-        return os.path.join(self.get_template_root(), self.template_name)
-
-    def render(self, template_name=None, **kwargs):
-        try:
-            super().render(template_name, **kwargs)
-        except FileNotFoundError:
-            super().render(os.path.join('services', 'default.html'), **kwargs)
-
-
 class PageHandlerMixin:
     page_name = None
     breadcrumbs = None
@@ -82,6 +66,22 @@ class PageHandlerMixin:
             'page': self.page_name,
             'breadcrumbs': self.get_breadcrumbs(),
         }
+
+
+class UserTemplateServiceRequestHandler(ServiceContextMixin, TemplateHandler, UserHandlerMixin):
+    template_name = None
+
+    def get_template_root(self):
+        return os.path.join('services', self.get_service_name())
+
+    def get_template_name(self):
+        return os.path.join(self.get_template_root(), self.template_name)
+
+    def render(self, template_name=None, **kwargs):
+        try:
+            super().render(template_name, **kwargs)
+        except FileNotFoundError:
+            super().render(os.path.join('services', 'default.html'), **kwargs)
 
 
 class ServicePageHandler(PageHandlerMixin, UserTemplateServiceRequestHandler):

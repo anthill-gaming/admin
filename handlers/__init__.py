@@ -1,4 +1,4 @@
-from anthill.framework.handlers import RequestHandler
+from anthill.framework.handlers import RequestHandler, TemplateHandler
 from anthill.framework.http.errors import HttpBadRequestError
 from anthill.framework.utils.decorators import authenticated
 from anthill.framework.utils.translation import translate as _
@@ -8,9 +8,8 @@ from anthill.platform.handlers.jsonrpc import JsonRPCSessionHandler, jsonrpc_met
 from anthill.platform.auth.handlers import (
     LoginHandler as BaseLoginHandler,
     LogoutHandler as BaseLogoutHandler,
-    UserTemplateHandler, UserHandlerMixin
 )
-from anthill.platform.handlers.base import InternalRequestHandlerMixin
+from anthill.platform.handlers.base import InternalRequestHandlerMixin, UserHandlerMixin
 from anthill.platform.api.internal import connector, InternalAPIError
 from ._base import ServiceContextMixin, UserTemplateServiceRequestHandler, PageHandlerMixin
 from admin.ui.modules import ServiceCard
@@ -24,7 +23,7 @@ logger = logging.getLogger('anthill.application')
 
 
 # @authenticated()
-class HomeHandler(InternalRequestHandlerMixin, PageHandlerMixin, UserTemplateHandler):
+class HomeHandler(InternalRequestHandlerMixin, PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'index'
 
     async def get_service_cards(self):
@@ -49,7 +48,7 @@ class LogoutHandler(BaseLogoutHandler):
 
 
 # @authenticated()
-class DebugHandler(PageHandlerMixin, UserTemplateHandler):
+class DebugHandler(PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'debug'
 
     async def get_context_data(self, **kwargs):
@@ -57,7 +56,7 @@ class DebugHandler(PageHandlerMixin, UserTemplateHandler):
         return context
 
 
-class DebugSessionHandler(UserHandlerMixin, PageHandlerMixin, JsonRPCSessionHandler):
+class DebugSessionHandler(PageHandlerMixin, JsonRPCSessionHandler, UserHandlerMixin):
     """Defines json-rpc methods for debugging."""
     page_name = 'debug-session'
 
@@ -115,7 +114,7 @@ def _util_internal_wrapper(on_error=None):
     return decorator
 
 
-class UtilsSessionHandler(UserHandlerMixin, JsonRPCSessionHandler):
+class UtilsSessionHandler(JsonRPCSessionHandler, UserHandlerMixin):
     SUCCESSFUL_MESSAGE = _('Completed successfully.')
 
     @jsonrpc_method()
@@ -140,7 +139,7 @@ class UtilsSessionHandler(UserHandlerMixin, JsonRPCSessionHandler):
 
 
 # @authenticated()
-class SidebarMainToggle(UserHandlerMixin, RequestHandler):
+class SidebarMainToggle(RequestHandler, UserHandlerMixin):
     """Save main sidebar state expanded or closed."""
 
     async def get(self):
@@ -155,7 +154,7 @@ class SidebarMainToggle(UserHandlerMixin, RequestHandler):
 
 
 # @authenticated()
-class LogRequestHandler(ServiceContextMixin, PageHandlerMixin, UserTemplateHandler):
+class LogRequestHandler(ServiceContextMixin, PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'log'
     service_name = None
 
@@ -170,22 +169,22 @@ class LogRequestHandler(ServiceContextMixin, PageHandlerMixin, UserTemplateHandl
 
 
 # @authenticated()
-class SettingsRequestHandler(PageHandlerMixin, UserTemplateHandler):
+class SettingsRequestHandler(PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'settings'
 
 
 # @authenticated()
-class AuditLogRequestHandler(PageHandlerMixin, UserTemplateHandler):
+class AuditLogRequestHandler(PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'audit_log'
 
 
 # @authenticated()
-class ProfileRequestHandler(PageHandlerMixin, UserTemplateHandler):
+class ProfileRequestHandler(PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'profile'
 
 
 # @authenticated()
-class UpdateManagerRequestHandler(PageHandlerMixin, UserTemplateHandler):
+class UpdateManagerRequestHandler(PageHandlerMixin, TemplateHandler, UserHandlerMixin):
     page_name = 'update_manager'
 
     async def get_context_data(self, **kwargs):
